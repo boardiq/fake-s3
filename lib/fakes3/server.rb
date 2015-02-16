@@ -171,7 +171,7 @@ module FakeS3
         end
 
         real_obj = @store.store_object(bucket_obj,s_req.object,s_req.webrick_request)
-        response.header['ETag'] = "\"#{real_obj.md5}\""
+        response.header['ETag'] = "\"#{real_obj ? real_obj.md5 : nil}\""
       when Request::CREATE_BUCKET
         @store.create_bucket(s_req.bucket)
       end
